@@ -1,0 +1,5 @@
+services:
+    IWD\AuthSdk\AuthClient:
+        arguments:
+            $baseUrl: '%env(AUTH_BASE_URL)%'
+            $token: '%env(PLATFORM_SERVICE_TOKEN)%'

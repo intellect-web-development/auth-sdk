@@ -1,0 +1,20 @@
+framework:
+    messenger:
+        transports:
+            # Очередь объявляет Auth. Иначе consume --all продукта заберёт чужие команды.
+            auth-commands-transport:
+                dsn: '%env(PLATFORM_MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: auth.commands
+                        type: direct
+                    queues: false
+            auth-events-in:
+                dsn: '%env(PLATFORM_MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                        name: auth.events
+                        type: direct
+                    queues:
+                        bond-screener.auth:
+                            binding_keys: ['bond-screener']
