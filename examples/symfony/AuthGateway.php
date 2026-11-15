@@ -2,12 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Common\Auth;
+namespace IWD\AuthSdk\Examples\Symfony;
 
 use IWD\AuthSdk\AuthClient;
 
 /**
- * Пример инфраструктурного шлюза. Домен продукта этот класс не импортирует.
+ * Пример инфраструктурного шлюза. В продукте копируйте в App\Common\Auth (или свой BC);
+ * домен продукта этот класс и SDK не импортирует.
  */
 final readonly class AuthGateway
 {

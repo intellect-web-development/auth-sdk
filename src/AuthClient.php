@@ -45,6 +45,25 @@ final readonly class AuthClient
         return $this->request('POST', '/join/email/confirm', ['json' => ['confirmToken' => $confirmToken]]);
     }
 
+    /** @return list<string> */
+    public function registrationMethods(): array
+    {
+        $data = $this->request('GET', '/registration-methods');
+        $methods = $data['methods'] ?? [];
+        if (!is_array($methods)) {
+            throw new InvalidArgumentException('methods: список строк.');
+        }
+        $normalized = [];
+        foreach ($methods as $method) {
+            if (!is_string($method) || '' === $method) {
+                throw new InvalidArgumentException('methods: список строк.');
+            }
+            $normalized[] = $method;
+        }
+
+        return $normalized;
+    }
+
     /** @return array<string, mixed> */
     public function authenticate(string $email, string $password): array
     {

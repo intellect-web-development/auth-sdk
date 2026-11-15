@@ -32,6 +32,19 @@ final class AuthClientTest extends TestCase
         self::assertNull($sdk->user(15));
     }
 
+    public function testRegistrationMethodsReadsTheList(): void
+    {
+        $client = new MockHttpClient(function (string $method, string $url): MockResponse {
+            self::assertSame('GET', $method);
+            self::assertSame('http://auth.test/api/sdk/registration-methods', $url);
+
+            return new MockResponse(json_encode(['methods' => ['email']], JSON_THROW_ON_ERROR));
+        });
+        $sdk = new AuthClient($client, 'http://auth.test', 'platform-token');
+
+        self::assertSame(['email'], $sdk->registrationMethods());
+    }
+
     public function testSetGrantRejectsUnknownEffect(): void
     {
         $sdk = new AuthClient(new MockHttpClient(), 'http://auth.test', 'token');
