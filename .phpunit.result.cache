@@ -1,1 +1,0 @@
-{"version":2,"defects":[],"times":{"IWD\\AuthSdk\\Tests\\AuthClientTest::testAuthenticatePostsToSdkAndUser404IsNull":0.005,"IWD\\AuthSdk\\Tests\\AuthClientTest::testSetGrantRejectsUnknownEffect":0}}
